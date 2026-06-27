@@ -11,8 +11,8 @@ try:
 
     bn = os.path.basename(fp)
 
-    # CLAUDE.md는 프로젝트 루트에 있어야 하므로 제외
-    if bn == "CLAUDE.md":
+    # 루트에 있어야 하는 파일 제외
+    if bn in ("CLAUDE.md", "README.md"):
         sys.exit(0)
 
     root = os.path.normcase(os.path.abspath(r"c:\workspace\tread"))
