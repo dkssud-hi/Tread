@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python c:\\workspace\\tread\\.claude\\hooks\\enforce-docs-path.py"
+          }
+        ]
+      }
+    ]
+  }
+}
