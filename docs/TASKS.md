@@ -30,14 +30,18 @@
 
 ## Phase 3 — 검색 API
 
-- [ ] `lib/shoes.ts` 필터 로직 작성
-      - purpose / cushion / recommendedDistance 필터 조합
+- [x] `lib/shoes.ts` 필터 로직 작성 (getAllShoes / getShoeById / filterShoes)
+      - 필터 4축: purpose · cushion · responsiveness · distance
+      - purpose·distance는 배열 포함 매칭, cushion·responsiveness는 정확 일치
       - 파라미터 미입력 시 해당 조건 무시
-- [ ] `app/api/shoes/route.ts` API Route 구현
-      - GET /api/shoes?purpose=&cushion=&distance=
-      - 응답: Shoe[] JSON
+- [x] `app/api/shoes/route.ts` API Route 구현
+      - GET /api/shoes?purpose=&cushion=&responsiveness=&distance=
+      - 허용값 검증(허용 외 값은 무시), 응답: Shoe[] JSON
 
-**완료 기준**: 브라우저에서 `/api/shoes?purpose=jogging` 호출 시 필터링된 결과가 반환된다.
+**완료 기준**: PRD 시나리오 1~3 + 엣지케이스 검증 완료
+- 입문자(jogging/under5/soft) → 데일리화 4개, 레이스화는 under5 검색에서 0개 노출
+- 인터벌+반발력high → 스피드화 4개
+- 잘못된 파라미터는 무시되고 나머지 조건만 적용
 
 ---
 
