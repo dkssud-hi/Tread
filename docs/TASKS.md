@@ -31,11 +31,11 @@
 ## Phase 3 — 검색 API
 
 - [x] `lib/shoes.ts` 필터 로직 작성 (getAllShoes / getShoeById / filterShoes)
-      - 필터 4축: purpose · cushion · responsiveness · distance
-      - purpose·distance는 배열 포함 매칭, cushion·responsiveness는 정확 일치
+      - 필터 5축: purpose · cushion · responsiveness · distance · brand
+      - purpose·distance는 배열 포함 매칭, cushion·responsiveness·brand는 정확 일치
       - 파라미터 미입력 시 해당 조건 무시
 - [x] `app/api/shoes/route.ts` API Route 구현
-      - GET /api/shoes?purpose=&cushion=&responsiveness=&distance=
+      - GET /api/shoes?purpose=&cushion=&responsiveness=&distance=&brand=
       - 허용값 검증(허용 외 값은 무시), 응답: Shoe[] JSON
 
 **완료 기준**: PRD 시나리오 1~3 + 엣지케이스 검증 완료
@@ -47,9 +47,9 @@
 
 ## Phase 4 — 핵심 UI (Must Have)
 
-- [x] `components/SearchFilter.tsx` — 훈련목적·착화감·반발력·거리 선택 칩 폼
+- [x] `components/SearchFilter.tsx` — 훈련목적·착화감·반발력·거리·브랜드 선택 칩 폼
 - [x] `app/page.tsx` — 홈 화면 (SearchFilter 배치)
-- [x] `components/ShoeCard.tsx` — 검색 결과 카드 (브랜드색 플레이스홀더 + 스펙 뱃지)
+- [x] `components/ShoeCard.tsx` — 검색 결과 카드 (브랜드색 플레이스홀더 + 쿠셔닝·거리·무게 뱃지)
 - [x] `app/shoes/page.tsx` — 검색 결과 목록 (URL 쿼리 기반, 적용 조건 칩, 빈 결과 처리)
 - [x] `components/ShoeDetail.tsx` — 스펙 테이블 + 특성 태그 + 구매 버튼
 - [x] `app/shoes/[id]/page.tsx` — 상세 페이지 (generateStaticParams로 25개 정적 생성, 404 처리)

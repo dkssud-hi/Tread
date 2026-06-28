@@ -57,19 +57,20 @@ tread/
 │   │       └── page.tsx         # 러닝화 상세 페이지
 │   └── api/
 │       └── shoes/
-│           └── route.ts         # GET /api/shoes?purpose=&cushion=&distance=
+│           └── route.ts         # GET /api/shoes?purpose=&cushion=&responsiveness=&distance=&brand=
 │
 ├── components/                  # 재사용 UI 컴포넌트
-│   ├── SearchFilter.tsx         # 조건 선택 폼 (훈련목적·쿠셔닝·거리)
-│   ├── ShoeCard.tsx             # 검색 결과 카드
+│   ├── SearchFilter.tsx         # 조건 선택 폼 (훈련목적·착화감·반발력·거리·브랜드)
+│   ├── ShoeCard.tsx             # 검색 결과 카드 (쿠셔닝·거리·무게 뱃지)
 │   └── ShoeDetail.tsx          # 상세 스펙 테이블
 │
 ├── data/
 │   └── shoes.json               # 러닝화 스펙 데이터 (MVP)
 │
 ├── lib/
-│   └── shoes.ts                 # 데이터 접근 + 필터 로직
-│                                # ※ Supabase 전환 시 이 파일만 수정
+│   ├── shoes.ts                 # 데이터 접근 + 필터 로직
+│   │                            # ※ Supabase 전환 시 이 파일만 수정
+│   └── display.ts               # 한글 라벨·브랜드색·거리 병합 표시 헬퍼
 │
 ├── types/
 │   └── shoe.ts                  # Shoe 타입 정의
@@ -113,9 +114,10 @@ type Shoe = {
 }
 ```
 
-### 검색 필터 4축
-훈련 목적(`purpose`) · 착화감(`cushion`) · 반발력(`responsiveness`) · 거리(`distance`).
+### 검색 필터 5축
+훈련 목적(`purpose`) · 착화감(`cushion`) · 반발력(`responsiveness`) · 거리(`distance`) · 브랜드(`brand`).
 `weight` / `drop`은 필터 조건이 아니라 상세 페이지 표시용이다.
+검색 결과 카드는 추천 거리를 연속 범위로 병합해 표시한다(예: `5to10`+`10to20` → "5~20km", `lib/display.ts`의 `formatDistanceRange`).
 
 ---
 
@@ -131,6 +133,7 @@ type Shoe = {
 | `cushion` | string | `soft`, `firm`, `balanced` | 정확히 일치 |
 | `responsiveness` | string | `high`, `mid`, `low` | 정확히 일치 |
 | `distance` | string | `under5`, `5to10`, `10to20`, `over20` | 신발의 `recommendedDistance` 배열에 포함되면 매칭 |
+| `brand` | string | `Nike`, `Adidas`, `HOKA` … | 정확히 일치 (`lib/display.ts`의 `BRAND_OPTIONS` 기준 검증) |
 
 > **거리 매칭 보충**: `recommendedDistance`는 "그 신발로 훈련 시 추천되는 거리대"이며 복수 값을 가진다.
 > 예) 데일리화 `Pegasus 41`은 `["under5","5to10","10to20"]`이라 짧은~중거리 검색에 노출되고,
