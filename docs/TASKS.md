@@ -8,9 +8,9 @@
 
 ## Phase 1 — 프로젝트 셋업
 
-- [ ] Next.js 14 (App Router) + TypeScript + Tailwind CSS 프로젝트 초기화
-- [ ] ESLint / Prettier 설정
-- [ ] docs/ARCHITECTURE.md 의 폴더 구조대로 디렉터리 생성
+- [x] Next.js 14 (App Router) + TypeScript + Tailwind CSS 프로젝트 초기화
+- [x] ESLint / Prettier 설정
+- [x] docs/ARCHITECTURE.md 의 폴더 구조대로 디렉터리 생성
       (app/, components/, data/, lib/, types/, public/images/shoes/)
 - [ ] Vercel 연결 및 초기 배포 확인
 
