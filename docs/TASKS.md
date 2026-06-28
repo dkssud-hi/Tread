@@ -47,14 +47,17 @@
 
 ## Phase 4 — 핵심 UI (Must Have)
 
-- [ ] `components/SearchFilter.tsx` — 훈련 목적·쿠셔닝·거리 선택 폼
-- [ ] `app/page.tsx` — 홈 화면 (SearchFilter 배치)
-- [ ] `components/ShoeCard.tsx` — 검색 결과 카드 (이름·브랜드·쿠셔닝·무게 표시)
-- [ ] `app/shoes/page.tsx` — 검색 결과 목록 (URL 쿼리 파라미터 기반)
-- [ ] `components/ShoeDetail.tsx` — 전체 스펙 테이블
-- [ ] `app/shoes/[id]/page.tsx` — 상세 페이지
+- [x] `components/SearchFilter.tsx` — 훈련목적·착화감·반발력·거리 선택 칩 폼
+- [x] `app/page.tsx` — 홈 화면 (SearchFilter 배치)
+- [x] `components/ShoeCard.tsx` — 검색 결과 카드 (브랜드색 플레이스홀더 + 스펙 뱃지)
+- [x] `app/shoes/page.tsx` — 검색 결과 목록 (URL 쿼리 기반, 적용 조건 칩, 빈 결과 처리)
+- [x] `components/ShoeDetail.tsx` — 스펙 테이블 + 특성 태그 + 구매 버튼
+- [x] `app/shoes/[id]/page.tsx` — 상세 페이지 (generateStaticParams로 25개 정적 생성, 404 처리)
+- [x] `lib/display.ts` — 라벨·브랜드색 매핑 (공통)
 
-**완료 기준**: 조건 선택 → 결과 목록 → 상세 페이지 흐름이 끊김 없이 동작한다. (PRD 시나리오 1~3 수동 테스트 통과)
+**디자인**: 에너지 오렌지 테마, 모바일 우선 반응형 그리드, 이미지는 브랜드색 플레이스홀더(추후 교체)
+
+**완료 기준**: production 빌드 통과 + 홈/검색결과/상세 페이지 HTTP 200 렌더링 확인, 없는 id는 404
 
 ---
 
