@@ -8,7 +8,7 @@
 | **스타일링** | Tailwind CSS | Next.js 공식 지원, MVP 개발 속도 최우선 |
 | **Backend** | Next.js API Routes (서버리스) | MVP 단계에서 별도 서버 불필요. Vercel에 자동 배포 |
 | **데이터** | JSON 파일 (`/data/shoes.json`) | 러닝화 50~200개 수준에서 DB 없이 서버 필터링으로 충분 |
-| **배포** | Vercel | Next.js 공식 호스팅, 무료 티어로 MVP 커버, HTTPS 자동 처리 |
+| **배포** | Vercel ([tread-nine.vercel.app](https://tread-nine.vercel.app)) | Next.js 공식 호스팅, 무료 티어로 MVP 커버, HTTPS 자동 처리. master push 시 자동 재배포 |
 
 ### 마이그레이션 경로
 - 데이터가 많아지거나 관리 UI가 필요해지면 `/lib/shoes.ts` 한 파일만 수정해 **Supabase**(PostgreSQL)로 전환
