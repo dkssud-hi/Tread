@@ -12,7 +12,7 @@
 - [x] ESLint / Prettier 설정
 - [x] docs/ARCHITECTURE.md 의 폴더 구조대로 디렉터리 생성
       (app/, components/, data/, lib/, types/, public/images/shoes/)
-- [ ] Vercel 연결 및 초기 배포 확인
+- [x] Vercel 연결 및 초기 배포 확인 → https://tread-nine.vercel.app
 
 **완료 기준**: `npm run dev` 실행 시 로컬호스트에서 Next.js 기본 화면이 뜨고, Vercel에 빈 배포가 성공한다.
 
@@ -20,10 +20,9 @@
 
 ## Phase 2 — 데이터 준비
 
-- [ ] `types/shoe.ts` 타입 정의 작성 (docs/ARCHITECTURE.md 스키마 참조)
-- [ ] 기존 운동화 정보 데이터를 shoes.json 스키마에 맞게 변환·통합
-- [ ] `data/shoes.json` 초기 데이터 작성 (목표: 20~30개 모델)
-      - 필수 필드: id, name, brand, purpose[], cushion, weight, drop, recommendedDistance, features[], officialUrl
+- [x] `types/shoe.ts` 타입 정의 작성 (docs/ARCHITECTURE.md 스키마 참조)
+- [x] 기존 운동화 정보 데이터를 shoes.json 스키마에 맞게 변환·통합
+- [x] `data/shoes.json` 초기 데이터 작성 (25개 모델 — Nike·Adidas·ASICS·HOKA·NB·Saucony·Brooks·On·Mizuno·Puma)
 
 **완료 기준**: shoes.json 파일이 TypeScript 타입과 일치하고, 각 purpose 카테고리에 최소 3개 이상의 모델이 있다.
 
