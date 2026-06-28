@@ -6,7 +6,17 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python c:\\workspace\\tread\\.claude\\hooks\\enforce-docs-path.py"
+            "command": "bash 'c:/workspace/tread/.claude/hooks/enforce-docs-path.sh'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash 'c:/workspace/tread/.claude/hooks/check-docs-sync.sh'"
           }
         ]
       }
