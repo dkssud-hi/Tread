@@ -25,3 +25,4 @@
 
 - 제품 사양 / 기능 명세    →  docs/PRD.md
 - 시스템 아키텍처          →  docs/ARCHITECTURE.md
+- 개발 작업 목록          →  docs/TASKS.md
