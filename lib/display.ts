@@ -51,3 +51,29 @@ const BRAND_COLORS: Record<string, string> = {
 export function brandColor(brand: string): string {
   return BRAND_COLORS[brand] ?? '#6B7280'
 }
+
+// 필터용 브랜드 목록 (데이터의 브랜드와 동기화 — BRAND_COLORS 키 기준)
+export const BRAND_OPTIONS: string[] = Object.keys(BRAND_COLORS)
+
+// 거리 밴드별 경계값 (km). over20은 상한 없음(Infinity).
+const DISTANCE_BOUNDS: Record<DistanceRange, [number, number]> = {
+  under5: [0, 5],
+  '5to10': [5, 10],
+  '10to20': [10, 20],
+  over20: [20, Infinity],
+}
+
+// 추천 거리 배열을 연속 범위로 병합해 한 줄로 표시
+// 예) ['5to10','10to20'] -> '5~20km', ['10to20','over20'] -> '10km 이상'
+export function formatDistanceRange(distances: DistanceRange[]): string {
+  if (distances.length === 0) return '-'
+  const sorted = [...distances].sort(
+    (a, b) => DISTANCE_OPTIONS.indexOf(a) - DISTANCE_OPTIONS.indexOf(b)
+  )
+  const min = DISTANCE_BOUNDS[sorted[0]][0]
+  const max = DISTANCE_BOUNDS[sorted[sorted.length - 1]][1]
+  if (min === 0 && max === Infinity) return '전 거리'
+  if (min === 0) return `${max}km 이하`
+  if (max === Infinity) return `${min}km 이상`
+  return `${min}~${max}km`
+}

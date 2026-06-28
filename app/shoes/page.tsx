@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import ShoeCard from '@/components/ShoeCard'
 import {
+  BRAND_OPTIONS,
   CUSHION_LABELS,
   DISTANCE_LABELS,
   PURPOSE_LABELS,
@@ -20,6 +21,7 @@ type SearchParams = {
   cushion?: string
   responsiveness?: string
   distance?: string
+  brand?: string
 }
 
 const PURPOSES: Purpose[] = ['jogging', 'interval', 'tempo', 'race', 'lsd']
@@ -43,6 +45,7 @@ export default async function ShoesPage({
     cushion: pick(sp.cushion, CUSHIONS),
     responsiveness: pick(sp.responsiveness, RESPONSIVENESS),
     distance: pick(sp.distance, DISTANCES),
+    brand: pick(sp.brand, BRAND_OPTIONS),
   }
 
   const results = filterShoes(filter)
@@ -53,6 +56,7 @@ export default async function ShoesPage({
   if (filter.cushion) appliedChips.push(CUSHION_LABELS[filter.cushion])
   if (filter.responsiveness) appliedChips.push(RESPONSIVENESS_LABELS[filter.responsiveness])
   if (filter.distance) appliedChips.push(DISTANCE_LABELS[filter.distance])
+  if (filter.brand) appliedChips.push(filter.brand)
 
   return (
     <main className="mx-auto w-full max-w-5xl flex-1 px-5 py-10">

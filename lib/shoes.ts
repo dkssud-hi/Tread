@@ -32,6 +32,9 @@ export function filterShoes(filter: ShoeFilter): Shoe[] {
     if (filter.distance && !shoe.recommendedDistance.includes(filter.distance)) {
       return false
     }
+    if (filter.brand && shoe.brand !== filter.brand) {
+      return false
+    }
     return true
   })
 }

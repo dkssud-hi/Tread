@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { BRAND_OPTIONS } from '@/lib/display'
 import { filterShoes } from '@/lib/shoes'
 import type {
   Cushion,
@@ -27,6 +28,7 @@ export function GET(request: Request) {
     cushion: pick(searchParams.get('cushion'), CUSHIONS),
     responsiveness: pick(searchParams.get('responsiveness'), RESPONSIVENESS),
     distance: pick(searchParams.get('distance'), DISTANCES),
+    brand: pick(searchParams.get('brand'), BRAND_OPTIONS),
   }
 
   const results = filterShoes(filter)

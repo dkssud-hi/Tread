@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { brandColor, CUSHION_LABELS } from '@/lib/display'
+import { brandColor, CUSHION_LABELS, formatDistanceRange } from '@/lib/display'
 import type { Shoe } from '@/types/shoe'
 
 export default function ShoeCard({ shoe }: { shoe: Shoe }) {
@@ -25,11 +25,11 @@ export default function ShoeCard({ shoe }: { shoe: Shoe }) {
           <span className="rounded-full bg-orange-50 px-2.5 py-1 text-xs font-medium text-orange-700">
             {CUSHION_LABELS[shoe.cushion]}
           </span>
-          <span className="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-600">
-            {shoe.weight}g
+          <span className="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-medium text-blue-700">
+            {formatDistanceRange(shoe.recommendedDistance)}
           </span>
           <span className="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-600">
-            드롭 {shoe.drop}mm
+            {shoe.weight}g
           </span>
         </div>
       </div>

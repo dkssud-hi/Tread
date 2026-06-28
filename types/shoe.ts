@@ -18,10 +18,11 @@ export type Shoe = {
   officialUrl: string
 }
 
-// 검색 필터 4축: 훈련 목적 · 거리 · 쿠셔닝 · 반발력
+// 검색 필터: 훈련 목적 · 쿠셔닝 · 반발력 · 거리 · 브랜드
 export type ShoeFilter = {
   purpose?: Purpose
   cushion?: Cushion
   responsiveness?: Responsiveness
   distance?: DistanceRange
+  brand?: string
 }

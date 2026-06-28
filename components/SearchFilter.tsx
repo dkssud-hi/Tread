@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import {
+  BRAND_OPTIONS,
   CUSHION_LABELS,
   CUSHION_OPTIONS,
   DISTANCE_LABELS,
@@ -18,6 +19,7 @@ type Selected = {
   cushion?: string
   responsiveness?: string
   distance?: string
+  brand?: string
 }
 
 // 단일 선택 칩 그룹 (이미 선택된 칩을 다시 누르면 해제)
@@ -30,7 +32,7 @@ function ChipGroup({
 }: {
   title: string
   options: string[]
-  labels: Record<string, string>
+  labels?: Record<string, string>
   value?: string
   onSelect: (v?: string) => void
 }) {
@@ -51,7 +53,7 @@ function ChipGroup({
                   : 'border-gray-300 bg-white text-gray-600 hover:border-orange-400 hover:text-orange-600'
               }`}
             >
-              {labels[opt]}
+              {labels?.[opt] ?? opt}
             </button>
           )
         })}
@@ -74,6 +76,7 @@ export default function SearchFilter() {
     if (selected.cushion) params.set('cushion', selected.cushion)
     if (selected.responsiveness) params.set('responsiveness', selected.responsiveness)
     if (selected.distance) params.set('distance', selected.distance)
+    if (selected.brand) params.set('brand', selected.brand)
     const query = params.toString()
     router.push(query ? `/shoes?${query}` : '/shoes')
   }
@@ -107,6 +110,12 @@ export default function SearchFilter() {
         labels={DISTANCE_LABELS}
         value={selected.distance}
         onSelect={(v) => update('distance', v)}
+      />
+      <ChipGroup
+        title="브랜드"
+        options={BRAND_OPTIONS}
+        value={selected.brand}
+        onSelect={(v) => update('brand', v)}
       />
       <button
         type="button"
