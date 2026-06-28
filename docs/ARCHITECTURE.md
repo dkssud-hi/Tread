@@ -94,6 +94,7 @@ type ShoeId = string  // 예: "nike-vaporfly-3"
 
 type Purpose = 'jogging' | 'interval' | 'tempo' | 'race' | 'lsd'
 type Cushion = 'soft' | 'firm' | 'balanced'
+type Responsiveness = 'high' | 'mid' | 'low'   // 반발력(에너지 리턴)
 type DistanceRange = 'under5' | '5to10' | '10to20' | 'over20'
 
 type Shoe = {
@@ -102,14 +103,19 @@ type Shoe = {
   brand: string                       // 브랜드 (예: "Nike")
   imageUrl: string                    // 제품 이미지 경로
   purpose: Purpose[]                  // 복수 선택 가능
-  cushion: Cushion
-  weight: number                      // 그램 (남성 270mm 기준)
-  drop: number                        // 힐-투-토 드롭 (mm)
-  recommendedDistance: DistanceRange
-  features: string[]                  // 주요 특성 설명 (2~4개)
-  officialUrl: string                 // 공식 구매 페이지 URL (허용 도메인만)
+  cushion: Cushion                    // 착화감(쿠셔닝)
+  responsiveness: Responsiveness      // 반발력 등급
+  weight: number                       // 그램 (남성 270mm 기준) — 상세 표시용
+  drop: number                         // 힐-투-토 드롭 (mm) — 상세 표시용
+  recommendedDistance: DistanceRange[] // 훈련 시 추천 주행 거리대 (복수)
+  features: string[]                   // 주요 특성 설명 (2~4개)
+  officialUrl: string                  // 공식 구매 페이지 URL (허용 도메인만)
 }
 ```
+
+### 검색 필터 4축
+훈련 목적(`purpose`) · 착화감(`cushion`) · 반발력(`responsiveness`) · 거리(`distance`).
+`weight` / `drop`은 필터 조건이 아니라 상세 페이지 표시용이다.
 
 ---
 
@@ -119,11 +125,16 @@ type Shoe = {
 
 조건 필터링 검색. 모든 파라미터는 선택 사항이며, 미입력 시 해당 조건을 무시한다.
 
-| 파라미터 | 타입 | 예시 |
-|---|---|---|
-| `purpose` | string | `jogging`, `interval`, `race` |
-| `cushion` | string | `soft`, `firm`, `balanced` |
-| `distance` | string | `under5`, `5to10`, `10to20`, `over20` |
+| 파라미터 | 타입 | 예시 | 매칭 방식 |
+|---|---|---|---|
+| `purpose` | string | `jogging`, `interval`, `race` | 신발의 purpose 배열에 포함되면 매칭 |
+| `cushion` | string | `soft`, `firm`, `balanced` | 정확히 일치 |
+| `responsiveness` | string | `high`, `mid`, `low` | 정확히 일치 |
+| `distance` | string | `under5`, `5to10`, `10to20`, `over20` | 신발의 `recommendedDistance` 배열에 포함되면 매칭 |
+
+> **거리 매칭 보충**: `recommendedDistance`는 "그 신발로 훈련 시 추천되는 거리대"이며 복수 값을 가진다.
+> 예) 데일리화 `Pegasus 41`은 `["under5","5to10","10to20"]`이라 짧은~중거리 검색에 노출되고,
+> 카본 레이스화 `Vaporfly 3`은 `["10to20","over20"]`이라 입문자의 `under5` 검색에는 노출되지 않는다.
 
 **응답 예시**:
 ```json
@@ -133,7 +144,9 @@ type Shoe = {
     "name": "Pegasus 41",
     "brand": "Nike",
     "cushion": "balanced",
+    "responsiveness": "mid",
     "weight": 283,
+    "recommendedDistance": ["under5", "5to10", "10to20"],
     ...
   }
 ]
